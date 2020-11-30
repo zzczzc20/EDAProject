@@ -24,5 +24,16 @@ classdef MOS
             d = nmos2.GetAnotherPort(ComPort);
             AndNMOS = MOS(d, "AND("+nmos1.Gate+", "+nmos2.Gate+")", s, nmos1.id);
         end
+        function OrNMOS = OrNMerge(nmos1, nmos2)
+            OrNMOS = MOS(nmos1.Drain, "OR("+nmos1.Gate+", "+nmos2.Gate+")", nmos1.Source, nmos1.id);
+        end
+        function AndPMOS = AndPMerge(pmos1, pmos2)
+            AndPMOS = MOS(pmos1.Drain, "AND("+pmos1.Gate+", "+pmos2.Gate+")", pmos1.Source, pmos1.id);
+        end
+        function OrPMOS = OrPMerge(pmos1, pmos2, ComPort)
+            s = pmos1.GetAnotherPort(ComPort);
+            d = pmos2.GetAnotherPort(ComPort);
+            OrPMOS = MOS(d, "OR("+pmos1.Gate+", "+pmos2.Gate+")", s, pmos1.id);
+        end
     end
 end
