@@ -13,14 +13,16 @@ classdef MOS
             obj.id = id;
         end
         function AnotherPort = GetAnotherPort(obj, port)
-            if (obj.source == port)
-                return obj.Drain;
+            if (obj.Source == port)
+                AnotherPort = obj.Drain;
             else
-                return obj.Source;
+                AnotherPort = obj.Source;
             end
         end
-        function AndNMOS = AndNMerge(nmos1, nmos2)
-            
+        function AndNMOS = AndNMerge(nmos1, nmos2, ComPort)
+            s = nmos1.GetAnotherPort(ComPort);
+            d = nmos2.GetAnotherPort(ComPort);
+            AndNMOS = MOS(d, "AND("+nmos1.Gate+", "+nmos2.Gate+")", s, nmos1.id);
         end
     end
 end
