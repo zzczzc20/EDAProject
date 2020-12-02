@@ -7,7 +7,7 @@ classdef port
     methods
         function obj = port(name)
             obj.cell = [];
-            obj.id = id;
+            obj.id = name;
             obj.state = 0;
         end
         function obj = AddCell(obj, MOS_id)

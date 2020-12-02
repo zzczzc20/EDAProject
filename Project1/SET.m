@@ -18,5 +18,19 @@ classdef SET
                 end
             end
         end
+        function obj = DeleteId(obj, ids)
+            len = length(ids);
+            for index = 1:len
+                obj = obj.Delete(obj.FindId(ids(index)));
+            end
+        end
+        function isContained = isIncluded(obj, id)
+            len = length(obj.FindId(id));
+            if (len == 0)
+                isContained = false;
+            else
+                isContained = true;
+            end
+        end
     end
 end
