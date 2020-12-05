@@ -3,6 +3,9 @@ classdef SET
         content;
     end
     methods
+        function obj = SET(content)
+            obj.content = content;
+        end
         function obj = push(obj, element)
             obj.content = [obj.content element];
         end
@@ -17,6 +20,9 @@ classdef SET
                     id_SET = [id_SET index];
                 end
             end
+        end
+        function get = Get(obj, id)
+            get = obj.content(obj.FindId(id));
         end
         function obj = DeleteId(obj, ids)
             len = length(ids);
