@@ -1,0 +1,1 @@
+NOT(OR(AND(A, OR(B, C)), AND(OR(D, E), F)))
