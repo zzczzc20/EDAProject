@@ -9,6 +9,7 @@ function [MOS_SET_, Port_SET] = AndCheck(MOS_SET, Port_SET, Portid)
     for index = 1:length(CellList)
         CurrentPort = Port_SET.Get(MOS_SET.Get(CellList(index)).GetAnotherPort(Portid));
         if(CurrentPort.state == 0 && CurrentPort.id ~= 3 && length(CurrentPort.cell) == 2)
+            [MOS_SET, Port_SET] = CheckAnd(MOS_SET, Port_SET, CurrentPort.cell(1), CurrentPort.cell(2));
             MOS_SET.content(MOS_SET.FindId(CurrentPort.cell(1))) = MOS_SET.content(MOS_SET.FindId(CurrentPort.cell(1))).AndNMerge(MOS_SET.Get(CurrentPort.cell(2)), CurrentPort.id);
             del_set = [del_set CurrentPort.cell(2)];
             ChangedId = MOS_SET.Get(CurrentPort.cell(2)).GetAnotherPort(CurrentPort.id);

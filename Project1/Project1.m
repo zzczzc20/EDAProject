@@ -51,6 +51,8 @@ function ret = Project1(TestFile)
 
     % Third Part -------------------------------------------------------------------------------
     % Process and Display Information ----------------------------------------------------------
+    assert(MOSSet.size() == 2);
+    assert(MOSSet.Get(PortsSet.Get(1).cell).Gate == MOSSet.Get(PortsSet.Get(2).cell).Gate);
     disp('NOT('+MOSSet.Get(PortsSet.Get(1).cell).Gate+')')
     % The End of Third Part --------------------------------------------------------------------
     fclose(FileId);
