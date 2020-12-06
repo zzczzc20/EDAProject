@@ -24,6 +24,9 @@ classdef SET
         function get = Get(obj, id)
             get = obj.content(obj.FindId(id));
         end
+        function size = size(obj)
+            size = length(obj.content);
+        end
         function obj = DeleteId(obj, ids)
             len = length(ids);
             for index = 1:len

@@ -6,7 +6,7 @@ function [MOS_SET_, neo_cell_list] = PortOrMerge(MOS_SET, cell_list, pid)
 % Long description
     del_set = [];
     neo_cell_list = SET([]);
-    cell_tags = SET(zeros(1, length(cell_list)));
+    cell_tags = zeros(1, length(cell_list));
     for index = 1 : length(cell_list)
         if (cell_tags(index) == 0)
             neo_cell_list = neo_cell_list.push(cell_list(index));
@@ -22,9 +22,10 @@ function [MOS_SET_, neo_cell_list] = PortOrMerge(MOS_SET, cell_list, pid)
             end
 
             for mid = 1:length(current_merge_cells)
-                MOS_SET.content(MOS_SET.FindId(cell_list(index))) = (MOS_SET.content(MOS_SET.FindId(cell_list(index)))).OrNMerge(MOS_SET.Get(current_merge_cells(mid)));
+                MOS_SET.content(MOS_SET.FindId(cell_list(index))) = MOS_SET.content(MOS_SET.FindId(cell_list(index))).OrNMerge(MOS_SET.Get(current_merge_cells(mid)));
             end
         end
     end
     MOS_SET_ = MOS_SET.DeleteId(del_set);
+    neo_cell_list = neo_cell_list.content;
 end

@@ -19,5 +19,8 @@ classdef port
         function obj = Finish(obj)
             obj.state = 2;
         end
+        function obj = Recover(obj)
+            obj.state = 0;
+        end
     end
 end
