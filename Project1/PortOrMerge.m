@@ -1,7 +1,7 @@
-function [MOS_SET_, neo_cell_list] = PortOrMerge(MOS_SET, cell_list, pid)
+function [MOS_SET, neo_cell_list, del_set] = PortOrMerge(MOS_SET, cell_list, pid)
 %PortOrMerge - Description
 %
-% Syntax: [MOS_SET_, neo_cell_list] = PortOrMerge(MOS_SET, cell_list)
+% Syntax: [MOS_SET, neo_cell_list, del_set] = PortOrMerge(MOS_SET, cell_list)
 %
 % Long description
     del_set = [];
@@ -15,7 +15,7 @@ function [MOS_SET_, neo_cell_list] = PortOrMerge(MOS_SET, cell_list, pid)
 
             for gid = (index + 1) : length(cell_list)
                 if (MOS_SET.Get(cell_list(gid)).GetAnotherPort(pid) == current_port)
-                    del_set = [del_set cell_list(gid)]
+                    del_set = [del_set cell_list(gid)];
                     cell_tags(gid) = 1;
                     current_merge_cells = [current_merge_cells cell_list(gid)];
                 end
@@ -26,6 +26,5 @@ function [MOS_SET_, neo_cell_list] = PortOrMerge(MOS_SET, cell_list, pid)
             end
         end
     end
-    MOS_SET_ = MOS_SET.DeleteId(del_set);
     neo_cell_list = neo_cell_list.content;
 end

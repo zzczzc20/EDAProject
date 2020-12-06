@@ -22,5 +22,8 @@ classdef port
         function obj = Recover(obj)
             obj.state = 0;
         end
+        function obj = DelCell(obj, id)
+            obj.cell(obj.cell == id) = [];
+        end
     end
 end
