@@ -41,5 +41,10 @@ classdef SET
                 isContained = true;
             end
         end
+        function output = Print(obj)
+            for index = 1:length(obj.content)
+                obj.content(index).Print();
+            end
+        end
     end
 end

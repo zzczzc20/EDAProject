@@ -30,7 +30,6 @@ function [MOS_SET, Port_SET] = CheckAnd(MOS_SET, Port_SET, id1, id2)
             end
         end
     end
-
     if(nid1 == -1 || nid2 == -1)
         disp("Incomplete PMOS net.");
         assert(false);
@@ -38,7 +37,7 @@ function [MOS_SET, Port_SET] = CheckAnd(MOS_SET, Port_SET, id1, id2)
 
     assert((src1 == src2 && drn1 == drn2) || (src1 == drn2 && src2 == drn1));
 
-    MOS_SET.content(nid1) = MOS_SET.content(nid1).AndPMerge(MOS_SET.Get(nid2));
+    MOS_SET.content(MOS_SET.FindId(nid1)) = MOS_SET.content(MOS_SET.FindId(nid1)).AndPMerge(MOS_SET.Get(nid2));
     Port_SET.content(src1) = Port_SET.content(src1).DelCell(nid2);
     Port_SET.content(drn1) = Port_SET.content(drn1).DelCell(nid2);
     MOS_SET = MOS_SET.DeleteId(nid2);

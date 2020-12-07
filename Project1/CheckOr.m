@@ -35,6 +35,6 @@ if(nid1 == -1 || nid2 == -1)
     disp("Incomplete PMOS net.");
     assert(false);
 end
-
-
+assert(SingleDirectionFinder(MOS_SET, Port_SET, src1, nid1, nid2) || SingleDirectionFinder(MOS_SET, Port_SET, drn1, nid1, nid2));
+[MOS_SET, Port_SET] = PMOSOrMerge(MOS_SET, Port_SET, nid1, nid2);
 end

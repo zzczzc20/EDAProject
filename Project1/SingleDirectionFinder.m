@@ -4,6 +4,7 @@ function [can] = SingleDirectionFinder(MOS_SET, Port_SET, CurrentPort, CurrentCe
 % Syntax: [can] = SingleDirectionFinder(MOS_SET, Port_SET, CurrentPort, CurrentCell, TargetCell)
 %
 % Long description
+    assert(MOS_SET.Get(CurrentCell).ContainPort(CurrentPort));
     assert(length(Port_SET.Get(CurrentPort).cell) ~= 0);
     if (length(Port_SET.Get(CurrentPort).cell) == 1)
         can = false;

@@ -23,6 +23,7 @@ for index = 1 : length(cell_list)
         end
 
         for mid = 1:length(current_merge_cells)
+            [MOS_SET, Port_SET] = CheckOr(MOS_SET, Port_SET, MOS_SET.Get(cell_list(index)).id, MOS_SET.Get(current_merge_cells(mid)).id);
             MOS_SET.content(MOS_SET.FindId(cell_list(index))) = MOS_SET.content(MOS_SET.FindId(cell_list(index))).OrNMerge(MOS_SET.Get(current_merge_cells(mid)));
         end
     end

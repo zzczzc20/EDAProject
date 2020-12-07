@@ -42,5 +42,11 @@ classdef MOS
                 isContain = false;
             end
         end
+        function output = Print(obj)
+            Drain = obj.Drain
+            Gate = obj.Gate
+            Source = obj.Source
+            id = obj.id
+        end
     end
 end

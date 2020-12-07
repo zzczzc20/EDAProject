@@ -25,5 +25,10 @@ classdef port
         function obj = DelCell(obj, id)
             obj.cell(obj.cell == id) = [];
         end
+        function output = Print(obj)
+            Cell = obj.cell
+            state = obj.state
+            id = obj.id
+        end
     end
 end

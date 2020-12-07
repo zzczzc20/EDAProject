@@ -4,7 +4,7 @@ function [MOS_SET, Port_SET] = PMOSOrMerge(MOS_SET, Port_SET, id1, id2)
 % Syntax: [MOS_SET, Port_SET] = PMOSOrMerge(MOS_SET, Port_SET, id1, id2)
 %
 % Long description
-    MOS_SET.content(MOS_SET.FindId(id1)) = MOS_SET.content(MOS_SET.FindId(id1)).AndPMerge(MOS_SET.content(MOS_SET.FindId(id2)));
+    MOS_SET.content(MOS_SET.FindId(id1)).Gate = "OR("+MOS_SET.content(MOS_SET.FindId(id1)).Gate+", "+MOS_SET.content(MOS_SET.FindId(id2)).Gate+")";
     port1 = MOS_SET.Get(id2).Source;
     port2 = MOS_SET.Get(id2).Drain;
     Port_SET.content(port1) = Port_SET.content(port1).DelCell(id2);

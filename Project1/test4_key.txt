@@ -1,0 +1,2 @@
+It isn't a legal CMOS net.
+The Program will meet faults.
