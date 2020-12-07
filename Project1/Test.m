@@ -74,4 +74,6 @@ port8 = port(8);
 port8.cell = [8 9];
 
 PortSET = SET([port1 port2 port3 port4 port5 port6 port7 port8]);
-[MOSSET, PortSET] = PMOSOrMerge(MOSSET, PortSET, 5, 9);
+%[MOSSET, PortSET] = PMOSOrMerge(MOSSET, PortSET, 5, 9);
+% Test Single Direction Finder.
+can = SingleDirectionFinder(MOSSET, PortSET, 5, 7, 9)
