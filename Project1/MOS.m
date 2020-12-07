@@ -35,5 +35,12 @@ classdef MOS
             d = pmos2.GetAnotherPort(ComPort);
             OrPMOS = MOS(d, "OR("+pmos1.Gate+", "+pmos2.Gate+")", s, pmos1.id);
         end
+        function isContain = ContainPort(obj, PortId)
+            if (obj.Source == PortId || obj.Drain == PortId)
+                isContain = true;
+            else
+                isContain = false;
+            end
+        end
     end
 end
