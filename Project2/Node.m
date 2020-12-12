@@ -4,6 +4,8 @@ classdef Node
         type;
         Input;
         Output;
+        ASAPTime;
+        ALAPTime;
     end
     methods
         function obj = Node(id, type_)
