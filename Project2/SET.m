@@ -21,8 +21,20 @@ classdef SET
                 end
             end
         end
+        function id_SET = FindNum(obj, id)
+            id_SET = [];
+            len = length(obj.content);
+            for index = 1 : len
+                if (obj.content(index) == id)
+                    id_SET = [id_SET index];
+                end
+            end
+        end
         function get = Get(obj, id)
             get = obj.content(obj.FindId(id));
+        end
+        function obj = Set(obj, id, Value_)
+            obj.content(obj.FindId(id)) = Value_;
         end
         function size = size(obj)
             size = length(obj.content);
@@ -31,6 +43,12 @@ classdef SET
             len = length(ids);
             for index = 1:len
                 obj = obj.Delete(obj.FindId(ids(index)));
+            end
+        end
+        function obj = DeleteNum(obj, ids)
+            len = length(ids);
+            for index = 1:len
+                obj = obj.Delete(obj.FindNum(ids(index)));
             end
         end
         function isContained = isIncluded(obj, id)
@@ -45,6 +63,9 @@ classdef SET
             for index = 1:length(obj.content)
                 obj.content(index).Print();
             end
+        end
+        function obj = Clear(obj)
+            obj.content = [];
         end
     end
 end

@@ -33,8 +33,11 @@ classdef Node
         function obj = Emit(obj, dep_id)
             obj.Output = obj.Output.push(dep_id);
         end
-        function obj = Receive(onj, dep_id)
+        function obj = Receive(obj, dep_id)
             obj.Input = obj.Input.push(dep_id);
+        end
+        function obj = DeleteInput(obj, DeleteId)
+            obj.Input = obj.Input.DeleteNum(DeleteId);
         end
     end
 end
