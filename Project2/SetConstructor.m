@@ -1,4 +1,4 @@
-function [NodeSet, DependencySet, T0] = SetConstructor(TestFile)
+function [NodeSet, DependencySet, T0, StartMeUp] = SetConstructor(TestFile)
 %SetConstructor - Description
 %
 % Syntax: [NodeSet, DependencySet, T0] = SetConstructor(TestFile)
@@ -13,6 +13,7 @@ function [NodeSet, DependencySet, T0] = SetConstructor(TestFile)
     T0 = double(str2num(RawStr{3}));
     fclose(TestFile);
     %}
+    StartMeUp = [];
     FileId = fopen(TestFile);
     NumOfNode = str2num(fgetl(FileId));
     NumOfDependency = str2num(fgetl(FileId));
@@ -25,6 +26,9 @@ function [NodeSet, DependencySet, T0] = SetConstructor(TestFile)
         RawStr = Raw{1};
         NodeId = double(str2num(RawStr{1}));
         NodeType = RawStr{2};
+        if (NodeType == 'i' || NodeType == 'd')
+            StartMeUp = [StartMeUp NodeId];
+        end
         NeoNode = Node(NodeId, NodeType);
         NodeSet = NodeSet.push(NeoNode);
     end
@@ -34,11 +38,15 @@ function [NodeSet, DependencySet, T0] = SetConstructor(TestFile)
         RawStr = Raw{1};
         SourceNodeId = double(str2num(RawStr{1}));
         DestinationNodeId = double(str2num(RawStr{2}));
+
+        assert(NodeSet.Get(SourceNodeId).type ~= 'o');
+        assert(NodeSet.Get(DestinationNodeId).type ~= 'i');
+
         NodeSet.content(NodeSet.FindId(SourceNodeId)) = NodeSet.content(NodeSet.FindId(SourceNodeId)).Emit(index);
         NodeSet.content(NodeSet.FindId(DestinationNodeId)) = NodeSet.content(NodeSet.FindId(DestinationNodeId)).Receive(index);
         NeoDependency = Dependency(index, SourceNodeId, DestinationNodeId, NodeSet.content(NodeSet.FindId(SourceNodeId)).GetDelay(T0));
         DependencySet = DependencySet.push(NeoDependency);
     end
-    NodeSet.Print();
-    DependencySet.Print();
+    %NodeSet.Print();
+    %DependencySet.Print();
 end

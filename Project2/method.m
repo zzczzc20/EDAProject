@@ -15,8 +15,8 @@ classdef method
                     LastTimeIndex = index;
                 end
             end
-            assert(obj.Type(LastTimeIndex) = 'o');
-            assert(obj.Duration(LastTimeIndex) = 0);
+            assert(obj.Type(LastTimeIndex) == 'o');
+            assert(obj.Duration(LastTimeIndex) == 0);
             %Secondly, Calculate hardware utilization for every single moments
             MaxNumOfAdders = 0;
             MaxNumOfMultipliers = 0;
@@ -59,7 +59,7 @@ classdef method
                 index
                 StartTime = obj.StartTime(index)
                 Duration = obj.Duration(index)
-                Type_ = obj.Type(index)
+                Type_ = char(obj.Type(index))
             end
         end
     end

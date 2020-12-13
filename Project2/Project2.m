@@ -4,5 +4,8 @@ function output = Project2(TestFile)
 % Syntax: output = Project2(TestFile)
 %
 % Long description
-    [NodeSet, DependencySet, T0] = SetConstructor(TestFile);
+    [NodeSet, DependencySet, T0, StartMeUp] = SetConstructor(TestFile);
+    TargetMethod = ASAP(NodeSet, DependencySet, StartMeUp, T0);
+    %disp('--------------------------------------------------');
+    TargetMethod.Print();
 end

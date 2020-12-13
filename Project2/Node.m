@@ -26,7 +26,8 @@ classdef Node
                     delay = 0;
                 else
                     assert(obj.type == 'd')
-                    delay = T0;
+                    %delay = T0;
+                    delay = 0;
                 end
             end
         end
