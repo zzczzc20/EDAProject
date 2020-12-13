@@ -8,4 +8,5 @@ function output = Project2(TestFile)
     TargetMethod = ASAP(NodeSet, DependencySet, StartMeUp, T0);
     %disp('--------------------------------------------------');
     TargetMethod.Print();
+    [cost_, MaxNumOfAdders, MaxNumOfMultipliers] = TargetMethod.GetCost()
 end

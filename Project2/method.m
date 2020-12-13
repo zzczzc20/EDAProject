@@ -5,17 +5,17 @@ classdef method
         Type;
     end
     methods
-        function cost_ = GetCost(obj)
+        function [cost_, MaxNumOfAdders, MaxNumOfMultipliers] = GetCost(obj)
             %Firstly, Get the last time. Which should be the output.
             LastTime = 0;
             LastTimeIndex = 0;
-            for index = 1:length(StartTime)
+            for index = 1:length(obj.StartTime)
                 if (obj.StartTime(index) > LastTime)
-                    LastTime = StartTime;
+                    LastTime = obj.StartTime(index);
                     LastTimeIndex = index;
                 end
             end
-            assert(obj.Type(LastTimeIndex) == 'o');
+            assert(obj.Type(LastTimeIndex) == 'o' || obj.Type(LastTimeIndex) == 'd');
             assert(obj.Duration(LastTimeIndex) == 0);
             %Secondly, Calculate hardware utilization for every single moments
             MaxNumOfAdders = 0;
