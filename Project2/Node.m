@@ -11,8 +11,8 @@ classdef Node
         function obj = Node(id, type_)
             obj.id = id;
             obj.type = type_;
-            Input = SET([]);
-            Output = SET([]);
+            obj.Input = SET([]);
+            obj.Output = SET([]);
         end
         function delay = GetDelay(obj, T0)
             if (obj.type == '+')
@@ -38,6 +38,12 @@ classdef Node
         end
         function obj = DeleteInput(obj, DeleteId)
             obj.Input = obj.Input.DeleteNum(DeleteId);
+        end
+        function Output = Print(obj)
+            id = obj.id
+            type_ = obj.type
+            input_ = obj.Input
+            output_ = obj.Output
         end
     end
 end

@@ -12,5 +12,11 @@ classdef Dependency
             obj.from = from;
             obj.to = to;
         end
+        function Output = Print(obj)
+            id = obj.id
+            weight = obj.weight
+            from = obj.from
+            to = obj.to
+        end
     end
 end

@@ -17,8 +17,8 @@ function [NodeSet, DependencySet, T0] = SetConstructor(TestFile)
     NumOfNode = str2num(fgetl(FileId));
     NumOfDependency = str2num(fgetl(FileId));
     T0 = str2num(fgetl(FileId));
-    NodeSet = [];
-    DependencySet = [];
+    NodeSet = SET([]);
+    DependencySet = SET([]);
     for index = 1:NumOfNode
         CurrentLine = fgetl(FileId);
         Raw = textscan(CurrentLine, '%s');
@@ -34,9 +34,11 @@ function [NodeSet, DependencySet, T0] = SetConstructor(TestFile)
         RawStr = Raw{1};
         SourceNodeId = double(str2num(RawStr{1}));
         DestinationNodeId = double(str2num(RawStr{2}));
-        NodeSet.content(NodeId.FindId(SourceNodeId)) = NodeSet.content(NodeId.FindId(SourceNodeId)).Emit(index);
+        NodeSet.content(NodeSet.FindId(SourceNodeId)) = NodeSet.content(NodeSet.FindId(SourceNodeId)).Emit(index);
         NodeSet.content(NodeSet.FindId(DestinationNodeId)) = NodeSet.content(NodeSet.FindId(DestinationNodeId)).Receive(index);
-        NeoDependency = Dependency(index, SourceNodeId, DestinationNodeId, NodeSet.content(NodeId.FindId(SourceNodeId)).GetDelay(T0));
+        NeoDependency = Dependency(index, SourceNodeId, DestinationNodeId, NodeSet.content(NodeSet.FindId(SourceNodeId)).GetDelay(T0));
         DependencySet = DependencySet.push(NeoDependency);
     end
+    NodeSet.Print();
+    DependencySet.Print();
 end
