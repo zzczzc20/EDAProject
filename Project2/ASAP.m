@@ -25,6 +25,6 @@ function TargetMethod = ASAP(NodeSet, DependencySet, StartMeUp, T0)
                 end
             end
         end
-        ActiveLayer = WhoAreReady(NodeSet, StateArray);
+        ActiveLayer = SET(WhoAreReady(NodeSet, StateArray));
     end
 end

@@ -54,5 +54,13 @@ classdef method
         function obj = SetStartTime(obj, id, StartTime)
             obj.StartTime(id) = StartTime;
         end
+        function output = Print(obj)
+            for index = 1:length(obj.StartTime)
+                index
+                StartTime = obj.StartTime(index)
+                Duration = obj.Duration(index)
+                Type_ = obj.Type(index)
+            end
+        end
     end
 end
