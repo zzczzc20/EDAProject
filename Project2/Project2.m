@@ -5,6 +5,16 @@ function output = Project2(TestFile)
 %
 % Long description
     [NodeSet, DependencySet, T0, StartMeUp] = SetConstructor(TestFile);
+    %{
+    NodeSet.Print();
+    DependencySet.Print();
+    %}
+    [NodeSet, DependencySet] = OperationsToRemoveD(NodeSet, DependencySet);
+    %{
+    disp("-------------------------")
+    NodeSet.Print();
+    DependencySet.Print();
+    %}
     TargetMethod = ASAP(NodeSet, DependencySet, StartMeUp, T0);
     %disp('--------------------------------------------------');
     TargetMethod.Print();
