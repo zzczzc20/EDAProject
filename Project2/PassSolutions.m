@@ -6,7 +6,7 @@ function SolutionArray = PassSolutions(TabuQueue, PossibleSolution)
 % Long description
     SolutionArray = [];
     tabu = TabuQueue.content;
-    for index = 1:length
+    for index = 1:length(PossibleSolution)
         CurrentSolution = PossibleSolution(index);
         tag = true;
         for tid = 1:length(tabu)

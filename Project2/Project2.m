@@ -15,14 +15,14 @@ function output = Project2(TestFile)
     NodeSet.Print();
     DependencySet.Print();
     %}
-    TargetMethod = ASAP(NodeSet, DependencySet, StartMeUp, T0);
+    TargetMethod = ASAP(NodeSet, DependencySet, StartMeUp, T0)
     %disp('--------------------------------------------------');
     %TargetMethod.Print();
     [cost_, MaxNumOfAdders, MaxNumOfMultipliers] = TargetMethod.GetCost()
     %aran = AvailableRange(TargetMethod, NodeSet, DependencySet);
     %aran.SingleVariationEarly
     %aran.SingleVariationLate
-    ALAPMethod = ALAP(NodeSet, DependencySet);
+    ALAPMethod = ALAP(NodeSet, DependencySet)
     %ALAPMethod.Print();
     [cost_, MaxNumOfAdders, MaxNumOfMultipliers] = ALAPMethod.GetCost()
     %aran = AvailableRange(ALAPMethod, NodeSet, DependencySet);
@@ -31,4 +31,6 @@ function output = Project2(TestFile)
     %TargetMethod
     %ALAPMethod
     %Method = RandomSolutionGenerator(TargetMethod, NodeSet, DependencySet)
+    OpMethod = TabuSearch(NodeSet, DependencySet, TargetMethod, 6, 20)
+    [cost_, MaxNumOfAdders, MaxNumOfMultipliers] = OpMethod.GetCost()
 end

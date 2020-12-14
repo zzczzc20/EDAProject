@@ -13,9 +13,9 @@ function Method = RandomSolutionGenerator(SrcMethod, NodeSet, DependencySet)
             break;
         end
     end
-    ChangeWho
-    Low = AvailableRangeX.SingleVariationEarly(ChangeWho)
-    High = AvailableRangeX.SingleVariationLate(ChangeWho)
+    %ChangeWho
+    Low = AvailableRangeX.SingleVariationEarly(ChangeWho);
+    High = AvailableRangeX.SingleVariationLate(ChangeWho);
     SrcMethod.StartTime(ChangeWho) = randi([AvailableRangeX.SingleVariationEarly(ChangeWho), AvailableRangeX.SingleVariationLate(ChangeWho)]);
     Method = SrcMethod;
 end
