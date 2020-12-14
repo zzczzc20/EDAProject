@@ -7,11 +7,17 @@ classdef AvailableRange
         function obj = AvailableRange(Method, NodeSet, DependencySet)
             obj.SingleVariationEarly = zeros(1, NodeSet.size());
             obj.SingleVariationLate = zeros(1, NodeSet.size());
+            MaxTime = 0;
+            for index = 1:NodeSet.size()
+                if (MaxTime < Method.StartTime(index))
+                    MaxTime = Method.StartTime(index);
+                end
+            end
             for index = 1:NodeSet.size()
                 InputDep = NodeSet.content(index).Input.content;
                 OutputDep = NodeSet.content(index).Output.content;
                 Early = 0;
-                Late = inf;
+                Late = MaxTime;
                 for iid = 1:length(InputDep)
                     FromNode = DependencySet.Get(InputDep(iid)).from;
                     StartTime = Method.StartTime(FromNode);
@@ -23,7 +29,7 @@ classdef AvailableRange
                     ToNode = DependencySet.Get(OutputDep(oid)).to;
                     StartTime = Method.StartTime(ToNode);
                     if (StartTime - DependencySet.Get(OutputDep(oid)).weight < Late)
-                        Late = StartTime + DependencySet.Get(OutputDep(oid)).weight;
+                        Late = StartTime - DependencySet.Get(OutputDep(oid)).weight;
                     end
                 end
                 obj.SingleVariationEarly(index) = Early;

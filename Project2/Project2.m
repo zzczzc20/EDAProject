@@ -17,13 +17,18 @@ function output = Project2(TestFile)
     %}
     TargetMethod = ASAP(NodeSet, DependencySet, StartMeUp, T0);
     %disp('--------------------------------------------------');
-    TargetMethod.Print();
+    %TargetMethod.Print();
     [cost_, MaxNumOfAdders, MaxNumOfMultipliers] = TargetMethod.GetCost()
-
+    %aran = AvailableRange(TargetMethod, NodeSet, DependencySet);
+    %aran.SingleVariationEarly
+    %aran.SingleVariationLate
     ALAPMethod = ALAP(NodeSet, DependencySet);
-    ALAPMethod.Print();
+    %ALAPMethod.Print();
     [cost_, MaxNumOfAdders, MaxNumOfMultipliers] = ALAPMethod.GetCost()
-    aran = AvailableRange(ALAPMethod, NodeSet, DependencySet);
-    aran.SingleVariationEarly
-    aran.SingleVariationLate
+    %aran = AvailableRange(ALAPMethod, NodeSet, DependencySet);
+    %aran.SingleVariationEarly
+    %aran.SingleVariationLate
+    %TargetMethod
+    %ALAPMethod
+    %Method = RandomSolutionGenerator(TargetMethod, NodeSet, DependencySet)
 end
