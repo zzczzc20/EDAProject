@@ -62,5 +62,18 @@ classdef method
                 Type_ = char(obj.Type(index))
             end
         end
+        function obj = MethodInversion(obj)
+            LatestNode = max(obj.StartTime);
+            obj.StartTime = LatestNode - obj.StartTime;
+            for index = 1:length(obj.Type)
+                if (obj.Type(index) == 'i')
+                    obj.Type(index) = 'o';
+                else
+                    if (obj.Type(index) == 'o')
+                        obj.Type(index) = 'i';
+                    end
+                end
+            end
+        end
     end
 end

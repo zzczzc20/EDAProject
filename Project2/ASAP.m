@@ -26,8 +26,8 @@ function TargetMethod = ASAP(NodeSet, DependencySet, StartMeUp, T0)
                 CurrentDestinationIndex = NodeSet.FindId(CurrentDestination);
                 NodeSet.content(CurrentDestinationIndex) = NodeSet.content(CurrentDestinationIndex).DeleteInput(CurrentDependency);
                 if (NodeSet.content(CurrentNodeIndex).type ~= 'd')
-                    if (TargetMethod.StartTime(CurrentDestinationIndex) < TargetMethod.StartTime(CurrentNodeIndex) + TargetMethod.Duration(CurrentNodeIndex))
-                        TargetMethod.StartTime(CurrentDestinationIndex) = TargetMethod.StartTime(CurrentNodeIndex) + TargetMethod.Duration(CurrentNodeIndex);
+                    if (TargetMethod.StartTime(CurrentDestinationIndex) < TargetMethod.StartTime(CurrentNodeIndex) + DependencySet.content(CurrentDependency).weight)
+                        TargetMethod.StartTime(CurrentDestinationIndex) = TargetMethod.StartTime(CurrentNodeIndex) + DependencySet.content(CurrentDependency).weight;
                     end                   
                 end
             end

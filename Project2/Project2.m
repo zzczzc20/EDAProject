@@ -19,4 +19,8 @@ function output = Project2(TestFile)
     %disp('--------------------------------------------------');
     TargetMethod.Print();
     [cost_, MaxNumOfAdders, MaxNumOfMultipliers] = TargetMethod.GetCost()
+
+    ALAPMethod = ALAP(NodeSet, DependencySet);
+    ALAPMethod.Print();
+    [cost_, MaxNumOfAdders, MaxNumOfMultipliers] = ALAPMethod.GetCost()
 end
