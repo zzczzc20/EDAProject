@@ -13,6 +13,7 @@ function [NodeSet, DependencySet, T0, StartMeUp] = SetConstructor(TestFile)
     T0 = double(str2num(RawStr{3}));
     fclose(TestFile);
     %}
+    IndexTrans = [];
     StartMeUp = [];
     FileId = fopen(TestFile);
     NumOfNode = str2num(fgetl(FileId));
@@ -29,22 +30,23 @@ function [NodeSet, DependencySet, T0, StartMeUp] = SetConstructor(TestFile)
         if (NodeType == 'i' || NodeType == 'd')
             StartMeUp = [StartMeUp NodeId];
         end
-        NeoNode = Node(NodeId, NodeType);
+        IndexTrans = [IndexTrans NodeId];
+        NeoNode = Node(index, NodeType);
         NodeSet = NodeSet.push(NeoNode);
     end
     for index = 1:NumOfDependency
         CurrentLine = fgetl(FileId);
         Raw = textscan(CurrentLine, '%s');
         RawStr = Raw{1};
-        SourceNodeId = double(str2num(RawStr{1}));
-        DestinationNodeId = double(str2num(RawStr{2}));
+        SourceNodeId = find(IndexTrans == double(str2num(RawStr{1})));
+        DestinationNodeId = find(IndexTrans == double(str2num(RawStr{2})));
 
-        assert(NodeSet.Get(SourceNodeId).type ~= 'o');
-        assert(NodeSet.Get(DestinationNodeId).type ~= 'i');
+        assert(NodeSet.content(SourceNodeId).type ~= 'o');
+        assert(NodeSet.content(DestinationNodeId).type ~= 'i');
 
-        NodeSet.content(NodeSet.FindId(SourceNodeId)) = NodeSet.content(NodeSet.FindId(SourceNodeId)).Emit(index);
-        NodeSet.content(NodeSet.FindId(DestinationNodeId)) = NodeSet.content(NodeSet.FindId(DestinationNodeId)).Receive(index);
-        NeoDependency = Dependency(index, SourceNodeId, DestinationNodeId, NodeSet.content(NodeSet.FindId(SourceNodeId)).GetDelay(T0));
+        NodeSet.content(SourceNodeId) = NodeSet.content(SourceNodeId).Emit(index);
+        NodeSet.content(DestinationNodeId) = NodeSet.content(DestinationNodeId).Receive(index);
+        NeoDependency = Dependency(index, SourceNodeId, DestinationNodeId, NodeSet.content(SourceNodeId).GetDelay(T0));
         DependencySet = DependencySet.push(NeoDependency);
     end
     %NodeSet.Print();

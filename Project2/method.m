@@ -75,5 +75,14 @@ classdef method
                 end
             end
         end
+        function isEqual = isEqual(obj1, obj2)
+            assert(length(obj1.StartTime) == length(obj2.StartTime));
+            isEqual = true;
+            for index = 1:length(obj1.StartTime)
+                if (obj1.StartTime(index) ~= obj2.StartTime(index))
+                    isEqual = false;
+                end
+            end
+        end
     end
 end

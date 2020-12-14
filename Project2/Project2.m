@@ -23,4 +23,7 @@ function output = Project2(TestFile)
     ALAPMethod = ALAP(NodeSet, DependencySet);
     ALAPMethod.Print();
     [cost_, MaxNumOfAdders, MaxNumOfMultipliers] = ALAPMethod.GetCost()
+    aran = AvailableRange(ALAPMethod, NodeSet, DependencySet);
+    aran.SingleVariationEarly
+    aran.SingleVariationLate
 end
