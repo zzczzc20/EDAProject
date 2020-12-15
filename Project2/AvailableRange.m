@@ -4,7 +4,7 @@ classdef AvailableRange
         SingleVariationLate;
     end
     methods
-        function obj = AvailableRange(Method, NodeSet, DependencySet)
+        function obj = AvailableRange(Method, NodeSet, DependencySet, TimeConstraint)
             obj.SingleVariationEarly = zeros(1, NodeSet.size());
             obj.SingleVariationLate = zeros(1, NodeSet.size());
             MaxTime = 0;
@@ -17,7 +17,7 @@ classdef AvailableRange
                 InputDep = NodeSet.content(index).Input.content;
                 OutputDep = NodeSet.content(index).Output.content;
                 Early = 0;
-                Late = MaxTime;
+                Late = TimeConstraint;
                 for iid = 1:length(InputDep)
                     FromNode = DependencySet.Get(InputDep(iid)).from;
                     StartTime = Method.StartTime(FromNode);

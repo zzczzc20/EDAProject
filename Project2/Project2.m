@@ -31,6 +31,6 @@ function output = Project2(TestFile)
     %TargetMethod
     %ALAPMethod
     %Method = RandomSolutionGenerator(TargetMethod, NodeSet, DependencySet)
-    OpMethod = TabuSearch(NodeSet, DependencySet, TargetMethod, 6, 20)
+    OpMethod = TabuSearch(NodeSet, DependencySet, TargetMethod, 200, 20, 10)
     [cost_, MaxNumOfAdders, MaxNumOfMultipliers] = OpMethod.GetCost()
 end

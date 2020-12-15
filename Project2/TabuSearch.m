@@ -1,7 +1,7 @@
-function OpMethod = TabuSearch(NodeSet, DependencySet, InitialSolution, k, ReTimes)
+function OpMethod = TabuSearch(NodeSet, DependencySet, InitialSolution, k, ReTimes, TimeConstraint)
 %TabuSearch - Description
 %
-% Syntax: OpMethod = TabuSearch(NodeSet, DependencySet, InitialSolution, k, ReTimes)
+% Syntax: OpMethod = TabuSearch(NodeSet, DependencySet, InitialSolution, k, ReTimes, TimeConstraint)
 %
 % Long description
     Counter = 2000;
@@ -12,10 +12,10 @@ function OpMethod = TabuSearch(NodeSet, DependencySet, InitialSolution, k, ReTim
     LowwestCost = InitialSolution.GetCost();
     CurrentSolution = InitialSolution;
     while (length(G) ~= 0 && Counter >= 0)
-        Counter = Counter + 1;
+        Counter = Counter - 1;
         G = [];
         for index = 1:ReTimes
-            G = [G RandomSolutionGenerator(InitialSolution, NodeSet, DependencySet)];
+            G = [G RandomSolutionGenerator(CurrentSolution, NodeSet, DependencySet, TimeConstraint)];
         end
 
         G = DeDuplicateSolutions(G);
@@ -29,8 +29,9 @@ function OpMethod = TabuSearch(NodeSet, DependencySet, InitialSolution, k, ReTim
             end
         end
         if (MinCost ~= inf)
-            CurrentSolution = MinSolution;
+            CurrentSolution = MinSolution
             Tabu = Tabu.push(CurrentSolution);
+            [cost_, MaxNumOfAdders, MaxNumOfMultipliers] = CurrentSolution.GetCost()
         end
         if (CurrentSolution.GetCost() < BestSolution.GetCost())
             BestSolution = CurrentSolution;

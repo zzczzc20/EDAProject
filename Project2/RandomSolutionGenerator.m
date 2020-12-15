@@ -1,10 +1,10 @@
-function Method = RandomSolutionGenerator(SrcMethod, NodeSet, DependencySet)
+function Method = RandomSolutionGenerator(SrcMethod, NodeSet, DependencySet, TimeConstraint)
 %RandomSolutionGenerator - Description
 %
-% Syntax: Method = RandomSolutionGenerator(SrcMethod, NodeSet, DependencySet)
+% Syntax: Method = RandomSolutionGenerator(SrcMethod, NodeSet, DependencySet, TimeConstraint)
 %
 % Long description
-    AvailableRangeX = AvailableRange(SrcMethod, NodeSet, DependencySet);
+    AvailableRangeX = AvailableRange(SrcMethod, NodeSet, DependencySet, TimeConstraint);
     NumOfNode = NodeSet.size();
     ChangeWho = 0;
     while (true)
