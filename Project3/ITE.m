@@ -28,11 +28,17 @@ classdef ITE
         % 'F': just function
         % '0': 0
         % '1': 1
-        
+        id;
     end
     methods
         function obj = ITE(InputString)
             
+        end
+        function Print(obj)
+            disp('id: '+ obj.id);
+            disp('First: '+obj.FirstVaribleId+" Func: "+obj.FirstFunctionId+" Type: "+obj.FirstType);
+            disp('Second: '+obj.SecondVaribleId+" Func: "+obj.SecondFunctionId+" Type: "+obj.SecondType);
+            disp('Third: '+obj.ThirdVaribleId+" Func: "+obj.ThirdFunctionId+" Type: "+obj.ThirdType);
         end
     end
     methods (Static)
