@@ -256,5 +256,22 @@ classdef ITE
             disp('Second: '+obj.SecondVaribleId+" Func: "+obj.SecondFunctionId+" Type: "+obj.SecondType);
             disp('Third: '+obj.ThirdVaribleId+" Func: "+obj.ThirdFunctionId+" Type: "+obj.ThirdType);
         end
+        function text = PlainText(obj, SetOfFunction)
+            ThreeTypes = [obj.FirstType obj.SecondType obj.ThirdType];
+            switch (ThreeTypes)
+            case ['x' 'x' '0']
+                text = "x" + num2str(obj.FirstVaribleId) + "x" + num2str(obj.SecondVaribleId);
+            case ['x' '0' 'x']
+                text = "~" + "x" + num2str(obj.FirstVaribleId) + "x" + num2str(obj.ThirdVaribleId);
+            case ['x' '1' 'x']
+                text = "x" + num2str(obj.FirstVaribleId) + " + " + "x" + num2str(obj.ThirdVaribleId);
+            case ['x' 'x' '1']
+                text = "~" + "x" + num2str(obj.FirstVaribleId) + " + " + "x" + num2str(obj.SecondVaribleId);
+            case ['x' 'x' 'x']
+                text = "x" + num2str(obj.FirstVaribleId) + "x" + num2str(obj.SecondVaribleId) + " + " + "~" + "x" + num2str(obj.FirstVaribleId) + "x" + num2str(obj.ThirdVaribleId);
+            otherwise
+                
+            end
+        end
     end
 end
