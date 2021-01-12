@@ -10,6 +10,11 @@ function Project3(TestFile)
     for index = 1:SetOfIte.size()
         SetOfIte.content(index)
     end
-    NumOfVars = length(pmat);
-    PrintList
+    %NumOfVars = length(pmat);
+    for index = 1:length(PrintList)
+        CurrentId = PrintList(index);
+        [SetOfIte, StartMeUp] = Apply_ite(SetOfIte, 1, CurrentId);
+        text = SetOfIte.Get(StartMeUp).PlainText(SetOfIte);
+        disp(text);
+    end
 end
