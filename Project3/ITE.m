@@ -298,15 +298,5 @@ classdef ITE
                 
             end
         end
-        %{
-        function [text value] = Set1(obj, SetOfFunction, varible)
-        %Set1 - Description
-        %
-        % Syntax: [text value] = Set1(obj, SetOfFunction)
-        %
-        % Long description
-            
-        end
-        %}
     end
 end
