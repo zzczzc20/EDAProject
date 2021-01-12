@@ -21,6 +21,9 @@ classdef SET
                 end
             end
         end
+        function setT = merge(set1, set2)
+            setT = SET([set1.content set2.content]);
+        end
         function id_SET = FindNum(obj, id)
             id_SET = [];
             len = length(obj.content);
