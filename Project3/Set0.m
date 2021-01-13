@@ -1,5 +1,5 @@
 function [SetOfIte, StartMeUp] = Set0(OriSet, VarId, IteId)
-    %Set1 - Description
+    %Set0 - Description
     %
     % Syntax: [SetOfIte, StartMeUp] = Set0(OriSet, VarId, IteId)
     %
@@ -12,7 +12,7 @@ function [SetOfIte, StartMeUp] = Set0(OriSet, VarId, IteId)
             end
         else
             if (cg.FirstType == 'F')
-                [OriSet, Fid] = Set1(OriSet, VarId, cg.FirstFunctionId);
+                [OriSet, Fid] = Set0(OriSet, VarId, cg.FirstFunctionId);
                 cg.FirstFunctionId = Fid;
             else
                 ctr = ctr + 1;
@@ -24,7 +24,7 @@ function [SetOfIte, StartMeUp] = Set0(OriSet, VarId, IteId)
             end
         else
             if (cg.SecondType == 'F')
-                [OriSet, Fid] = Set1(OriSet, VarId, cg.SecondFunctionId);
+                [OriSet, Fid] = Set0(OriSet, VarId, cg.SecondFunctionId);
                 cg.SecondFunctionId = Fid;
             else
                 ctr = ctr + 1;
@@ -36,7 +36,7 @@ function [SetOfIte, StartMeUp] = Set0(OriSet, VarId, IteId)
             end
         else
             if (cg.ThirdType == 'F')
-                [OriSet, Fid] = Set1(OriSet, VarId, cg.ThirdFunctionId);
+                [OriSet, Fid] = Set0(OriSet, VarId, cg.ThirdFunctionId);
                 cg.ThirdFunctionId = Fid;
             else
                 ctr = ctr + 1;

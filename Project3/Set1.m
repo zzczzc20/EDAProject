@@ -9,6 +9,8 @@ function [SetOfIte, StartMeUp] = Set1(OriSet, VarId, IteId)
     if (cg.FirstType == 'x')
         if (OriSet.Get(IteId).FirstVaribleId == VarId)
             cg.FirstType = '1';
+        else
+            ctr = ctr + 1;
         end
     else
         if (cg.FirstType == 'F')
@@ -21,6 +23,8 @@ function [SetOfIte, StartMeUp] = Set1(OriSet, VarId, IteId)
     if (cg.SecondType == 'x')
         if (cg.SecondVaribleId == VarId)
             cg.SecondType = '1';
+        else
+            ctr = ctr + 1;
         end
     else
         if (cg.SecondType == 'F')
@@ -33,6 +37,8 @@ function [SetOfIte, StartMeUp] = Set1(OriSet, VarId, IteId)
     if (cg.ThirdType == 'x')
         if (cg.ThirdVaribleId == VarId)
             cg.ThirdType = '1';
+        else
+            ctr = ctr + 1;
         end
     else
         if (cg.ThirdType == 'F')
