@@ -55,10 +55,30 @@ else
             end
         end
     else
-        cg.id = -(OriSet.size() + 1);
-        SetOfIte = OriSet.push(cg);
-        StartMeUp = cg.id;
-        Type_ = 'F';
+        if (cg.SecondType == '1' && cg.ThirdType == '1')
+            Type_ = '1';
+            StartMeUp = 0;
+            SetOfIte = OriSet;
+        elseif (cg.SecondType == '0' && cg.ThirdType == '0')
+            Type_ = '0';
+            StartMeUp = 0;
+            SetOfIte = OriSet;
+        else
+            if (cg.SecondType == 'x' && cg.ThirdType == 'x' && cg.SecondVaribleId == cg.ThirdVaribleId)
+                Type_ = 'x';
+                StartMeUp = cg.SecondVaribleId;
+                SetOfIte = OriSet;
+            elseif (cg.SecondType == 'F' && cg.ThirdType == 'F' && cg.SecondFunctionId == cg.ThirdFunctionId)
+                Type_ = 'F';
+                StartMeUp = cg.SecondFunctionId;
+                SetOfIte = OriSet;
+            else
+                cg.id = -(OriSet.size() + 1);
+                SetOfIte = OriSet.push(cg);
+                StartMeUp = cg.id;
+                Type_ = 'F';
+            end
+        end
     end
 end
 end

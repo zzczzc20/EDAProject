@@ -282,6 +282,8 @@ classdef ITE
                     text = "x" + num2str(obj.FirstVaribleId) + "x" + num2str(obj.SecondVaribleId);
                 case ['x' '0' 'x']
                     text = "~" + "x" + num2str(obj.FirstVaribleId) + "x" + num2str(obj.ThirdVaribleId);
+                case ['x' '0' '1']
+                    text = "~" + "x" + num2str(obj.FirstVaribleId);
                 case ['x' '1' 'x']
                     text = "x" + num2str(obj.FirstVaribleId) + " + " + "x" + num2str(obj.ThirdVaribleId);
                 case ['x' 'x' '1']
@@ -312,6 +314,12 @@ classdef ITE
                 case ['x' 'F' '1']
                     sp = SetOfFunction.Get(obj.SecondFunctionId).PlainText(SetOfFunction);
                     text = "~" + "x" + num2str(obj.FirstVaribleId) + " + " + sp;
+                case ['x' 'F' 'x']
+                    sp = SetOfFunction.Get(obj.SecondFunctionId).PlainText(SetOfFunction);
+                    text = "x" + num2str(obj.FirstVaribleId) + "(" + sp + ")" + " + " + "~" + "x" + num2str(obj.FirstVaribleId) + "x" + obj.ThirdVaribleId;
+                case ['x' 'x' 'F']
+                    tp = SetOfFunction.Get(obj.ThirdFunctionId).PlainText(SetOfFunction);
+                    text = "x" + num2str(obj.FirstVaribleId) + "x" + obj.SecondVaribleId + " + " + "~" + "x" + num2str(obj.FirstVaribleId) + "(" + tp + ")";
                 otherwise
                     ThreeTypes
                     obj
