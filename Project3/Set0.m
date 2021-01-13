@@ -4,6 +4,7 @@ function [SetOfIte, StartMeUp, Type_] = Set0(OriSet, VarId, IteId)
     % Syntax: [SetOfIte, StartMeUp, Type_] = Set0(OriSet, VarId, IteId)
     %
     % Long description
+        OriSet = Preprocess(OriSet, IteId);
         ctr = 0;
         cg = OriSet.Get(IteId);
         %cg(1)

@@ -11,9 +11,9 @@ function [SetOfIte, StartMeUp, rtype] = Apply_ite(OriSet, VarId, IteId, MaxVarId
         IteId
     end
     %}
-
+    OriSet = Preprocess(OriSet, IteId);
     OriIte = OriSet.Get(IteId);
-    if (VarId >= MaxVarId)
+    if (VarId > MaxVarId)
         %SetOfIte = OriSet;
         %StartMeUp = IteId;
         %rtype = 'F';
