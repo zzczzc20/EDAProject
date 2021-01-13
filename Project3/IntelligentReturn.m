@@ -73,10 +73,76 @@ else
                 StartMeUp = cg.SecondFunctionId;
                 SetOfIte = OriSet;
             else
-                cg.id = -(OriSet.size() + 1);
-                SetOfIte = OriSet.push(cg);
-                StartMeUp = cg.id;
-                Type_ = 'F';
+                Discover = 0;
+                for index = 1:OriSet.size()
+                    Cite = OriSet.content(index);
+                    counter = 0;
+                    if (Cite.FirstType == cg.FirstType)
+                        switch (cg.FirstType)
+                        case '0'
+                            counter = counter + 1;
+                        case '1'
+                            counter = counter + 1;
+                        case 'x'
+                            if (Cite.FirstVaribleId == cg.FirstVaribleId)
+                                counter = counter + 1;
+                            end
+                        case 'F'
+                            if (Cite.FirstFunctionId == cg.FirstFunctionId)
+                                counter = counter + 1;
+                            end
+                        end
+                    end
+
+                    if (Cite.SecondType == cg.SecondType)
+                        switch (cg.SecondType)
+                        case '0'
+                            counter = counter + 1;
+                        case '1'
+                            counter = counter + 1;
+                        case 'x'
+                            if (Cite.SecondVaribleId == cg.SecondVaribleId)
+                                counter = counter + 1;
+                            end
+                        case 'F'
+                            if (Cite.SecondFunctionId == cg.SecondFunctionId)
+                                counter = counter + 1;
+                            end
+                        end
+                    end
+
+                    if (Cite.ThirdType == cg.ThirdType)
+                        switch (cg.ThirdType)
+                        case '0'
+                            counter = counter + 1;
+                        case '1'
+                            counter = counter + 1;
+                        case 'x'
+                            if (Cite.ThirdVaribleId == cg.ThirdVaribleId)
+                                counter = counter + 1;
+                            end
+                        case 'F'
+                            if (Cite.ThirdFunctionId == cg.ThirdFunctionId)
+                                counter = counter + 1;
+                            end
+                        end
+                    end
+                    if (counter == 3)
+                        Discover = 1;
+                        TargetId = Cite.id;
+                        break;
+                    end
+                end
+                if (Discover == 1)
+                    SetOfIte = OriSet;
+                    StartMeUp = TargetId;
+                    Type_ = 'F';
+                else
+                    cg.id = -(OriSet.size() + 1);
+                    SetOfIte = OriSet.push(cg);
+                    StartMeUp = cg.id;
+                    Type_ = 'F';
+                end
             end
         end
     end
