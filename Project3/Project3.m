@@ -17,7 +17,8 @@ function Project3(TestFile)
         CurrentId = PrintList(index);
         [SetOfIte, StartMeUp] = Apply_ite(SetOfIte, 1, CurrentId, NumOfVars);
         SetOfIndexPrint(SetOfIte);
-        %text = SetOfIte.Get(StartMeUp).PlainText(SetOfIte);
-        %disp(text);
+        StartMeUp
+        text = SetOfIte.Get(StartMeUp).PlainText(SetOfIte);
+        disp(text);
     end
 end

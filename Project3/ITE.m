@@ -313,7 +313,9 @@ classdef ITE
                     sp = SetOfFunction.Get(obj.SecondFunctionId).PlainText(SetOfFunction);
                     text = "~" + "x" + num2str(obj.FirstVaribleId) + " + " + sp;
                 otherwise
-                    
+                    ThreeTypes
+                    obj
+                    assert(1==0);
                 end 
             end
         end
