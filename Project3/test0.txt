@@ -1,7 +1,13 @@
 4
-3
+5
 x1 x2 x3 x4
 F1 = ite(x1, 1, x2)
 F2 = ite(F1, x3, x4)
 F3 = ite(F1, F2, x2)
+F4 = ite(F3, F2, F1)
+F5 = ite(x3, F4, x4)
+print F1
+print F2
 print F3
+print F4
+print F5

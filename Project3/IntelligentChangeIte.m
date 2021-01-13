@@ -7,6 +7,7 @@ function ite = IntelligentChangeIte(rtype, Fid, cg, option)
     if (option == 1)
         if (rtype == 'F')
             cg.FirstFunctionId = Fid;
+            cg.FirstType = 'F';
         elseif (rtype == 'x')
             cg.FirstType = 'x';
             cg.FirstVaribleId = Fid;
@@ -18,6 +19,7 @@ function ite = IntelligentChangeIte(rtype, Fid, cg, option)
     elseif (option == 2)
         if (rtype == 'F')
             cg.SecondFunctionId = Fid;
+            cg.SecondType = 'F';
         elseif (rtype == 'x')
             cg.SecondType = 'x';
             cg.SecondVaribleId = Fid;
@@ -30,6 +32,7 @@ function ite = IntelligentChangeIte(rtype, Fid, cg, option)
         assert(option == 3);
         if (rtype == 'F')
             cg.ThirdFunctionId = Fid;
+            cg.ThirdType = 'F';
         elseif (rtype == 'x')
             cg.ThirdType = 'x';
             cg.ThirdVaribleId = Fid;

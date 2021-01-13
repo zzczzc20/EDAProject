@@ -6,6 +6,7 @@ function [SetOfIte, StartMeUp, Type_] = Set0(OriSet, VarId, IteId)
     % Long description
         ctr = 0;
         cg = OriSet.Get(IteId);
+        %cg(1)
         if (cg.FirstType == 'x')
             if (OriSet.Get(IteId).FirstVaribleId == VarId)
                 cg.FirstType = '0';
