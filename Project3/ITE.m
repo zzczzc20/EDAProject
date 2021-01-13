@@ -258,44 +258,65 @@ classdef ITE
         end
         % The function below print the standard form of ite, i.e. varible first manner.
         function text = PlainText(obj, SetOfFunction)
-            ThreeTypes = [obj.FirstType obj.SecondType obj.ThirdType];
-            switch (ThreeTypes)
-            case ['x' 'x' '0']
-                text = "x" + num2str(obj.FirstVaribleId) + "x" + num2str(obj.SecondVaribleId);
-            case ['x' '0' 'x']
-                text = "~" + "x" + num2str(obj.FirstVaribleId) + "x" + num2str(obj.ThirdVaribleId);
-            case ['x' '1' 'x']
-                text = "x" + num2str(obj.FirstVaribleId) + " + " + "x" + num2str(obj.ThirdVaribleId);
-            case ['x' 'x' '1']
-                text = "~" + "x" + num2str(obj.FirstVaribleId) + " + " + "x" + num2str(obj.SecondVaribleId);
-            case ['x' 'x' 'x']
-                if (obj.SecondVaribleId == obj.ThirdVaribleId)
+
+            if (obj.FirstType == '1')
+                switch (obj.SecondType)
+                case 'x'
                     text = "x" + num2str(obj.SecondVaribleId);
-                else
-                    text = "x" + num2str(obj.FirstVaribleId) + "x" + num2str(obj.SecondVaribleId) + " + " + "~" + "x" + num2str(obj.FirstVaribleId) + "x" + num2str(obj.ThirdVaribleId);
-                end
-            case ['x' 'F' 'F']
-                sp = SetOfFunction.Get(obj.SecondFunctionId).PlainText;
-                tp = SetOfFunction.Get(obj.ThirdFunctionId).PlainText;
-                if (sp == tp)
+                case 'F'
+                    sp = SetOfFunction.Get(obj.SecondFunctionId).PlainText(SetOfFunction);
                     text = sp;
-                else
-                    text = "x" + num2str(obj.FirstVaribleId) + "(" + sp + ")" + " + " + "~" + "x" + num2str(obj.FirstVaribleId) + "(" + tp + ")";
                 end
-            case ['x' 'F' '0']
-                sp = SetOfFunction.Get(obj.SecondFunctionId).PlainText;
-                text = "x" + num2str(obj.FirstVaribleId) + "(" + sp + ")";
-            case ['x' '0' 'F']
-                tp = SetOfFunction.Get(obj.ThirdFunctionId).PlainText;
-                text = "~" + "x" + num2str(obj.FirstVaribleId) + "(" + tp + ")";
-            case ['x' '1' 'F']
-                tp = SetOfFunction.Get(obj.ThirdFunctionId).PlainText;
-                text = "x" + num2str(obj.FirstVaribleId) + " + " + tp;
-            case ['x' 'F' '1']
-                sp = SetOfFunction.Get(obj.SecondFunctionId).PlainText;
-                text = "~" + "x" + num2str(obj.FirstVaribleId) + " + " + sp;
-            otherwise
-                
+            elseif (obj.FirstType == '0')
+                switch (obj.ThirdType)
+                case 'x'
+                    text = "x" + num2str(obj.ThirdVaribleId);
+                case 'F'
+                    sp = SetOfFunction.Get(obj.ThirdFunctionId).PlainText(SetOfFunction);
+                    text = sp;
+                end
+            else
+                ThreeTypes = [obj.FirstType obj.SecondType obj.ThirdType];
+                switch (ThreeTypes)
+                case ['x' 'x' '0']
+                    text = "x" + num2str(obj.FirstVaribleId) + "x" + num2str(obj.SecondVaribleId);
+                case ['x' '0' 'x']
+                    text = "~" + "x" + num2str(obj.FirstVaribleId) + "x" + num2str(obj.ThirdVaribleId);
+                case ['x' '1' 'x']
+                    text = "x" + num2str(obj.FirstVaribleId) + " + " + "x" + num2str(obj.ThirdVaribleId);
+                case ['x' 'x' '1']
+                    text = "~" + "x" + num2str(obj.FirstVaribleId) + " + " + "x" + num2str(obj.SecondVaribleId);
+                case ['x' 'x' 'x']
+                    if (obj.SecondVaribleId == obj.ThirdVaribleId)
+                        text = "x" + num2str(obj.SecondVaribleId);
+                    else
+                        text = "x" + num2str(obj.FirstVaribleId) + "x" + num2str(obj.SecondVaribleId) + " + " + "~" + "x" + num2str(obj.FirstVaribleId) + "x" + num2str(obj.ThirdVaribleId);
+                    end
+                case ['x' 'F' 'F']
+                    sp = SetOfFunction.Get(obj.SecondFunctionId).PlainText(SetOfFunction);
+                    tp = SetOfFunction.Get(obj.ThirdFunctionId).PlainText(SetOfFunction);
+                    if (sp == tp)
+                        text = sp;
+                    else
+                        text = "x" + num2str(obj.FirstVaribleId) + "(" + sp + ")" + " + " + "~" + "x" + num2str(obj.FirstVaribleId) + "(" + tp + ")";
+                    end
+                case ['x' 'F' '0']
+                    sp = SetOfFunction.Get(obj.SecondFunctionId).PlainText(SetOfFunction);
+                    text = "x" + num2str(obj.FirstVaribleId) + "(" + sp + ")";
+                case ['x' '0' 'F']
+                    tp = SetOfFunction.Get(obj.ThirdFunctionId).PlainText(SetOfFunction);
+                    text = "~" + "x" + num2str(obj.FirstVaribleId) + "(" + tp + ")";
+                case ['x' '1' 'F']
+                    tp = SetOfFunction.Get(obj.ThirdFunctionId).PlainText(SetOfFunction);
+                    text = "x" + num2str(obj.FirstVaribleId) + " + " + tp;
+                case ['x' 'F' '1']
+                    sp = SetOfFunction.Get(obj.SecondFunctionId).PlainText(SetOfFunction);
+                    text = "~" + "x" + num2str(obj.FirstVaribleId) + " + " + sp;
+                otherwise
+                    ThreeTypes
+                    obj
+                    assert(1==0);
+                end 
             end
         end
     end

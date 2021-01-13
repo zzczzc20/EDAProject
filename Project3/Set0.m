@@ -1,7 +1,7 @@
-function [SetOfIte, StartMeUp] = Set0(OriSet, VarId, IteId)
-    %Set1 - Description
+function [SetOfIte, StartMeUp, Type_] = Set0(OriSet, VarId, IteId)
+    %Set0 - Description
     %
-    % Syntax: [SetOfIte, StartMeUp] = Set0(OriSet, VarId, IteId)
+    % Syntax: [SetOfIte, StartMeUp, Type_] = Set0(OriSet, VarId, IteId)
     %
     % Long description
         ctr = 0;
@@ -9,11 +9,13 @@ function [SetOfIte, StartMeUp] = Set0(OriSet, VarId, IteId)
         if (cg.FirstType == 'x')
             if (OriSet.Get(IteId).FirstVaribleId == VarId)
                 cg.FirstType = '0';
+            else
+                ctr = ctr + 1;
             end
         else
             if (cg.FirstType == 'F')
-                [OriSet, Fid] = Set1(OriSet, VarId, cg.FirstFunctionId);
-                cg.FirstFunctionId = Fid;
+                [OriSet, Fid, rtype] = Set0(OriSet, VarId, cg.FirstFunctionId);
+                cg = IntelligentChangeIte(rtype, Fid, cg, 1);
             else
                 ctr = ctr + 1;
             end
@@ -21,11 +23,13 @@ function [SetOfIte, StartMeUp] = Set0(OriSet, VarId, IteId)
         if (cg.SecondType == 'x')
             if (cg.SecondVaribleId == VarId)
                 cg.SecondType = '0';
+            else
+                ctr = ctr + 1;
             end
         else
             if (cg.SecondType == 'F')
-                [OriSet, Fid] = Set1(OriSet, VarId, cg.SecondFunctionId);
-                cg.SecondFunctionId = Fid;
+                [OriSet, Fid, rtype] = Set0(OriSet, VarId, cg.SecondFunctionId);
+                cg = IntelligentChangeIte(rtype, Fid, cg, 2);
             else
                 ctr = ctr + 1;
             end
@@ -33,21 +37,24 @@ function [SetOfIte, StartMeUp] = Set0(OriSet, VarId, IteId)
         if (cg.ThirdType == 'x')
             if (cg.ThirdVaribleId == VarId)
                 cg.ThirdType = '0';
+            else
+                ctr = ctr + 1;
             end
         else
             if (cg.ThirdType == 'F')
-                [OriSet, Fid] = Set1(OriSet, VarId, cg.ThirdFunctionId);
-                cg.ThirdFunctionId = Fid;
+                [OriSet, Fid, rtype] = Set0(OriSet, VarId, cg.ThirdFunctionId);
+                cg = IntelligentChangeIte(rtype, Fid, cg, 3);
             else
                 ctr = ctr + 1;
             end
         end
+        
         if (ctr == 3)
             SetOfIte = OriSet;
             StartMeUp = IteId;
+            Type_ = 'F';
         else
-            cg.id = -(OriSet.size() + 1);
-            SetOfIte = OriSet.push(cg);
-            StartMeUp = cg.id;
+            [SetOfIte, StartMeUp, Type_] = IntelligentReturn(OriSet, cg);
         end
-end
+    
+    end
